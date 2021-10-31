@@ -5,7 +5,6 @@ import { useRouter } from 'next/router';
 const Login = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
-  const [user, setUser] = useState(null);
   const [message, setMessage] = useState('');
   const router = useRouter();
 
@@ -13,7 +12,6 @@ const Login = () => {
     const loggedUserJSON = window.localStorage.getItem('loggedUser');
     if (loggedUserJSON !== null) {
       const user = JSON.parse(loggedUserJSON);
-      setUser(user);
       // blogService.setToken(user.token);
     }
   }, []);
@@ -26,7 +24,6 @@ const Login = () => {
         password,
       });
       console.log(response);
-      setUser(user);
       setUsername('');
       setPassword('');
       window.localStorage.setItem('loggedUser', JSON.stringify(user));
@@ -38,9 +35,9 @@ const Login = () => {
     }
   };
   return (
-    <>
+    <div className="signup">
       <h1>Sign up</h1>
-      {user === null && (
+      {
         <form onSubmit={handleSignup}>
           <div>
             username
@@ -59,9 +56,9 @@ const Login = () => {
             <button type="submit">signup</button>
           </div>
         </form>
-      )}
+      }
       {message !== null && <div>{message}</div>}
-    </>
+    </div>
   );
 };
 
