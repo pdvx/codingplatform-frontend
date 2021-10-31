@@ -1,16 +1,39 @@
-import axios from "axios";
+import axios from 'axios';
 
-import { getFullUrl } from "./helper";
+import serviceHelper from './helper';
 
-const handleSignUp = async (params) => {
-  const response = await axios.post(getFullUrl("api/signUp"), params);
-  return response;
+const signUp = async (params) => {
+  try {
+    const response = await axios.post(serviceHelper.getFullUrl('signUp'), {
+      data: params,
+    });
+    return response;
+  } catch (error) {
+    console.log('error:', error);
+  }
 };
 
-const handleLogin = async ({ email, password }) => {
-  const response = await axios.post(getFullUrl("api/login"), params);
-  return response;
+const login = async (params) => {
+  try {
+    const response = await axios.post(serviceHelper.getFullUrl('login'), {
+      data: params,
+    });
+    return response;
+  } catch (error) {
+    console.log('error:', error);
+  }
 };
 
-const registerServices = {};
+const logout = async (params) => {
+  try {
+    const response = await axios.post(serviceHelper.getFullUrl('logout'), {
+      data: params,
+    });
+    return response;
+  } catch (error) {
+    console.log('error:', error);
+  }
+};
+
+const authServices = { signUp, login };
 export default authServices;

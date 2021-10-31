@@ -5,7 +5,7 @@ const getFullUrl = (url) => {
   if (!url.startsWith("/")) {
     url = "/" + url;
   }
-  return `${process.env.NEXT_API_URL}` + url;
+  return `http://localhost:3000` + url;
 };
-
-export default serviceHelper = { getFullUrl };
+const serviceHelper = { getFullUrl };
+export default serviceHelper;
